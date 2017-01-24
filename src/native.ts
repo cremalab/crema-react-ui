@@ -1,3 +1,3 @@
 export {
-  ButtonWeb as Button
+  ButtonNative as Button
 } from './components'

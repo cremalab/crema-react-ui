@@ -1,1 +1,3 @@
-export * from './components'
+export {
+  ButtonWeb as Button
+} from './components'
