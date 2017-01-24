@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import web from 'styled-components'
 import native from 'styled-components/native'
 
