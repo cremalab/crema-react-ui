@@ -1,3 +1,1 @@
-export {
-  ButtonWeb as Button
-} from './components'
+// export { default } from './components'

@@ -1,16 +1,21 @@
 {
   "name": "crema-react-ui-ts",
   "version": "1.0.0",
-  "main": "dist/crema-react-ui.js",
+  "main": "web.js",
   "license": "MIT",
   "scripts": {
     "build:dist": "rm -rf ./dist/* && webpack --env=prod --progress --profile --colors",
-    "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch"
+    "dev": "getstorybook",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@kadira/storybook": "^2.21.0",
+    "@types/node": "^7.0.3",
     "@types/react": "^15.0.2",
     "@types/react-dom": "^0.14.21",
     "awesome-typescript-loader": "^3.0.0-beta.18",
+    "getstorybook": "^1.7.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-native-web": "^0.0.68",
@@ -20,6 +25,9 @@
     "webpack": "^2.0.0"
   },
   "dependencies": {
-    "styled-components": "^1.3.1"
+    "styled-components": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0"
   }
 }

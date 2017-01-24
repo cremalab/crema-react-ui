@@ -57,7 +57,7 @@ module.exports = function (env) {
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
+          test: /\.ts(x?)$/,
           loader: 'ts-loader',
           exclude: /node_modules/,
         },
@@ -85,10 +85,7 @@ module.exports = function (env) {
       })
     ],
     resolve: {
-      extensions: [".tsx", ".ts", ".js"],
-      alias: {
-        'react-native': 'react-native-web'
-      }
+      extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
     devtool: 'inline-source-map',
   }

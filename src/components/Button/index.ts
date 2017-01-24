@@ -1,1 +1,1 @@
-export { ButtonWeb, ButtonNative } from './Button'
+export * from './Button'
