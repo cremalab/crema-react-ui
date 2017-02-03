@@ -16,4 +16,5 @@ dist
 npm-debug.log
 .swp
 *.swp
+*.tgz
 stats.json

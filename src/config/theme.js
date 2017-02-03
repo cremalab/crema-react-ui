@@ -1,6 +1,10 @@
 const defaultTheme = {
   primaryColor: '#00c',
-  unit: 'em',
+  unit: 'px',
+  color: {
+    primary: 'teal',
+    white: 'white',
+  },
   spacing: [
     0,
     8,
@@ -11,7 +15,11 @@ const defaultTheme = {
 
 const darkTheme = {
   primaryColor: '#c00',
-  unit: 'em',
+  unit: 'px',
+  color: {
+    primary: 'pink',
+    white: 'white',
+  },
   spacing: [
     10,
     18,

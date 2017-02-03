@@ -6,20 +6,27 @@ const Base = (props) => {
     platform,
     deps: { Container, Inner },
     children,
-    padding
+    background,
+    color,
+    margin,
+    padding,
+    radius,
   } = props
 
   const isString = typeof children === 'string'
-  const isNative = platform === 'native'
 
   return (
     <Container
       platform={platform}
+      background={background}
+      color={color}
+      margin={margin}
       padding={padding}
+      radius={radius}
     >
       {
-        isNative && isString
-        ? <Inner>{children}</Inner>
+        isString
+        ? <Inner color={color}>{children}</Inner>
         : children
       }
     </Container>
@@ -32,7 +39,11 @@ Base.propTypes = {
   platform: PropTypes.string,
   children: PropTypes.any,
   deps: PropTypes.object,
-  padding: PropTypes.number
+  background: PropTypes.string,
+  color: PropTypes.string,
+  margin: PropTypes.number,
+  padding: PropTypes.number,
+  radius: PropTypes.number,
 }
 Base.defaultProps = {
   deps: {},
