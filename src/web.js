@@ -1,1 +1,1 @@
-export { default as Box } from './components/Box/web'
+export { default as Box } from './components/Box/Web'
