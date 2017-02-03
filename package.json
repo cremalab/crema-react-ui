@@ -8,16 +8,23 @@
     "build": "rm -rf ./dist/* && webpack --env=dev --progress --profile --colors",
     "dev": "getstorybook",
     "start": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "NODE_ENV=test jest",
+    "test:coverage": "npm run test -- --coverage",
+    "test:watch": "npm run test -- --watch"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
     "babel-loader": "^6.2.5",
     "babel-preset-stage-0": "^6.22.0",
+    "case-sensitive-paths-webpack-plugin": "^1.1.4",
+    "enzyme": "^2.7.1",
     "eslint": "^3.14.1",
     "eslint-plugin-react": "^6.9.0",
     "getstorybook": "^1.7.0",
+    "jest": "^18.1.0",
     "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-native-web": "^0.0.68",
     "source-map-loader": "^0.1.6",
@@ -29,5 +36,27 @@
   },
   "peerDependencies": {
     "react": "^15.0.0"
+  },
+  "jest": {
+    "moduleDirectories": [
+      "node_modules",
+      "./src"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "moduleNameMapper": {
+      "react-native": "<rootDir>/node_modules/react-native-web"
+    }
   }
 }
