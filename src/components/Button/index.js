@@ -9,8 +9,8 @@ const theme = {
   fontSize: 16,
 }
 
-const buttonStyles = env => `
-  background-color: #00c;
+const buttonStyles = env => props =>`
+  background-color: ${props.theme.primaryColor};
   padding: ${env == 'web'
     ? theme.buttonPaddingVertical + 'px ' + theme.buttonPaddingHorizontal + 'px'
     : theme.buttonPaddingVertical + ' ' + theme.buttonPaddingHorizontal};

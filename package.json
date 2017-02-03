@@ -7,7 +7,7 @@
     "build:dist": "rm -rf ./dist/* && webpack --env=prod --progress --profile --colors",
     "build": "rm -rf ./dist/* && webpack --env=dev --progress --profile --colors",
     "dev": "getstorybook",
-    "storybook": "start-storybook -p 6006",
+    "start": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
@@ -24,6 +24,7 @@
     "webpack": "^2.0.0"
   },
   "dependencies": {
+    "@kadira/storybook-addon-knobs": "^1.7.1",
     "styled-components": "^1.0.0"
   },
   "peerDependencies": {
