@@ -1,11 +1,22 @@
 import React, { PropTypes } from 'react'
 
 const Base = (props) => {
-  const { deps: { Container, Inner, platform }, children } = props
+
+  const {
+    platform,
+    deps: { Container, Inner },
+    children,
+    padding
+  } = props
+
   const isString = typeof children === 'string'
   const isNative = platform === 'native'
+
   return (
-    <Container>
+    <Container
+      platform={platform}
+      padding={padding}
+    >
       {
         isNative && isString
         ? <Inner>{children}</Inner>
@@ -13,15 +24,19 @@ const Base = (props) => {
       }
     </Container>
   )
+
 }
 
 Base.displayName = 'Box'
 Base.propTypes = {
+  platform: PropTypes.string,
   children: PropTypes.any,
-  deps: PropTypes.object
+  deps: PropTypes.object,
+  padding: PropTypes.number
 }
 Base.defaultProps = {
-  deps: {}
+  deps: {},
+  padding: 0
 }
 
 export default Base

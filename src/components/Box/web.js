@@ -1,9 +1,11 @@
 import React from 'react'
 import Base from './Base'
 import styled from 'styled-components'
+import propToUnit from 'utils/propToUnit'
+
 
 const div = styled.div`
-  background: red
+  padding: ${propToUnit('padding')};
 `
 
 const deps = {
@@ -12,5 +14,9 @@ const deps = {
 }
 
 export default function Web(props) {
-  return <Base deps={deps} {...props} />
+  return <Base
+    platform='web'
+    deps={deps}
+    {...props}
+  />
 }
