@@ -51,17 +51,12 @@ const buttonBase = ({Button, Text}) => (props) =>
   </Button>
 )
 
-const ButtonWeb    = buttonBase({
+export const ButtonWeb    = buttonBase({
   Button: buttonWeb,
   Text: textWeb
 })
 
-const ButtonNative = buttonBase({
+export const ButtonNative = buttonBase({
   Button: buttonNative,
   Text: textNative
 })
-
-export {
-  ButtonWeb,
-  ButtonNative
-}
