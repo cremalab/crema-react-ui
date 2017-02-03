@@ -34,9 +34,10 @@ describe('Box', () => {
       const actual = shallow(<BoxNative>Deric</BoxNative>)
         .find('Box')
         .shallow()
-        .find('Styled(View)')
-        .shallow()
-      // expect(actual).toBe('Deric')
+        .find('Styled(Text)')
+        .children()
+        .text()
+      expect(actual).toBe('Deric')
     })
 
   })
