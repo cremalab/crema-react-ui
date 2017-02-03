@@ -57,9 +57,12 @@ module.exports = function (env) {
     module: {
       rules: [
         {
-          test: /\.ts(x?)$/,
-          loader: 'ts-loader',
+          test: /\.(js)$/,
+          loader: 'babel-loader',
           exclude: /node_modules/,
+          query: {
+            cacheDirectory: true,
+          },
         },
         {
           enforce: 'pre',
@@ -70,22 +73,22 @@ module.exports = function (env) {
       ]
     },
     plugins:[
-      new webpack.optimize.UglifyJsPlugin({
-        beautify: false,
-        mangle: {
-          screw_ie8: true,
-          keep_fnames: false
-        },
-        compress: {
-          warnings: false,
-          dead_code: true,
-          unused: true
-        },
-        comments: false
-      })
+      // new webpack.optimize.UglifyJsPlugin({
+      //   beautify: false,
+      //   mangle: {
+      //     screw_ie8: true,
+      //     keep_fnames: false
+      //   },
+      //   compress: {
+      //     warnings: false,
+      //     dead_code: true,
+      //     unused: true
+      //   },
+      //   comments: false
+      // })
     ],
     resolve: {
-      extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+      extensions: [".webpack.js", ".web.js", ".js", ".jsx"]
     },
     devtool: 'inline-source-map',
   }

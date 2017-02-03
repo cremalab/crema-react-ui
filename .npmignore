@@ -1,6 +1,7 @@
 src
 .storybook
 .gitignore
+.babelrc
 tsconfig.json
 webpack.config.js
 yarn.lock
