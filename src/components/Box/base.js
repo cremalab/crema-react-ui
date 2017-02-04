@@ -34,7 +34,7 @@ const Base = (props) => {
 
 }
 
-Base.displayName = 'Box'
+Base.displayName = 'Base'
 Base.propTypes = {
   platform: PropTypes.string,
   children: PropTypes.any,

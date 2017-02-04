@@ -11,7 +11,8 @@
     "build-storybook": "build-storybook",
     "test": "NODE_ENV=test jest",
     "test:coverage": "npm run test -- --coverage",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "test:watch:coverage": "npm run test:coverage -- --watch"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
@@ -23,6 +24,7 @@
     "eslint-plugin-react": "^6.9.0",
     "getstorybook": "^1.7.0",
     "jest": "^18.1.0",
+    "jest-enzyme": "^2.1.0",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -38,6 +40,7 @@
     "react": "^15.0.0"
   },
   "jest": {
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
     "moduleDirectories": [
       "node_modules",
       "./src"

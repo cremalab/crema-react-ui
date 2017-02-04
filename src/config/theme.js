@@ -1,31 +1,41 @@
 const defaultTheme = {
   primaryColor: '#00c',
-  unit: 'px',
   color: {
     primary: 'teal',
     white: 'white',
   },
-  spacing: [
-    0,
-    8,
-    16,
-    24,
-  ]
+  scaleUnit: 'px',
+  scale: {
+    '0': 0,
+    '1': 4,
+    '2': 8,
+    '3': 12,
+    '4': 16,
+    '5': 20,
+    '6': 24,
+    '7': 28,
+    '8': 32,
+  }
 }
 
 const darkTheme = {
   primaryColor: '#c00',
-  unit: 'px',
   color: {
     primary: 'pink',
     white: 'white',
   },
-  spacing: [
-    10,
-    18,
-    116,
-    124,
-  ]
+  scaleUnit: 'px',
+  scale: {
+    '0': 0,
+    '1': 4,
+    '2': 8,
+    '3': 12,
+    '4': 16,
+    '5': 20,
+    '6': 24,
+    '7': 28,
+    '8': 32,
+  }
 }
 
 export { defaultTheme, darkTheme }

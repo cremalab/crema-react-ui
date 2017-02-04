@@ -74,6 +74,10 @@ module.exports = function (env) {
     plugins:[
     ],
     resolve: {
+      modules: [
+        'node_modules',
+        path.resolve(__dirname, 'src')
+      ],
       extensions: ['.webpack.js', '.web.js', '.js', '.jsx'],
       alias: {
         'react-native': 'react-native-web'

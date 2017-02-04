@@ -1,20 +1,20 @@
 import web, { css } from 'styled-components'
 import native from 'styled-components/native'
-import { unit, color } from '../../utils/style'
+import { scaleLens, colorLens } from 'utils/themeLenses'
 
-const ContainerStyle = css`
-  background-color: ${color('background')};
-  margin:     ${unit('margin')};
-  padding:    ${unit('padding')};
-  radius:     ${unit('radius')};
+const Container = css`
+  background-color: ${colorLens('background')};
+  margin:           ${scaleLens('margin')};
+  padding:          ${scaleLens('padding')};
+  radius:           ${scaleLens('radius')};
 `
 
-const InnerStyle = css`
-  color:      ${color('color')}
+const Inner = css`
+  color:            ${colorLens('color')}
 `
 
-export const ContainerNative = native.View`${ContainerStyle}`
-export const InnerNative = native.Text`${InnerStyle}`
+export const ContainerNative = native.View`${Container}`
+export const InnerNative = native.Text`${Inner}`
 
-export const ContainerWeb = web.div`${ContainerStyle}`
-export const InnerWeb = web.span`${InnerStyle}`
+export const ContainerWeb = web.div`${Container}`
+export const InnerWeb = web.span`${Inner}`
