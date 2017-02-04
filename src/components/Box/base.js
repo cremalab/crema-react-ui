@@ -1,34 +1,45 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Children } from 'react'
 
 const Base = (props) => {
 
   const {
     platform,
-    deps: { Container, Inner },
+    elements: {
+      Container,
+      Child,
+      Text
+    },
     children,
-    background,
     color,
-    margin,
-    padding,
-    radius,
+    childSpacing,
+    ...rest
   } = props
 
-  const isString = typeof children === 'string'
+  const handleChild = (child, i) => childSpacing
+    ? (
+        <Child
+          platform={platform}
+          marginTop={i > 0 ? childSpacing : 0}>
+          { handleText(child) }
+        </Child>
+      )
+    : handleText(child)
+
+  const handleText = (child) => typeof child === 'string'
+    ? (
+        <Text color={color}>{child}</Text>
+      )
+    : child
 
   return (
     <Container
       platform={platform}
-      background={background}
-      color={color}
-      margin={margin}
-      padding={padding}
-      radius={radius}
+      {...rest}
     >
-      {
-        isString
-        ? <Inner color={color}>{children}</Inner>
-        : children
-      }
+      { Children.map(children, (child, i) => (
+          handleChild(child, i)
+        )
+      )}
     </Container>
   )
 
@@ -38,16 +49,16 @@ Base.displayName = 'Box'
 Base.propTypes = {
   platform: PropTypes.string,
   children: PropTypes.any,
-  deps: PropTypes.object,
-  background: PropTypes.string,
   color: PropTypes.string,
-  margin: PropTypes.number,
-  padding: PropTypes.number,
-  radius: PropTypes.number,
+  elements: PropTypes.object,
+  childSpacing: PropTypes.number
 }
 Base.defaultProps = {
-  deps: {},
-  padding: 0
+  elements: {},
+  padding: 0,
+  marginTop: 0,
+  margin: 0,
+  borderRadius: 0,
 }
 
 export default Base

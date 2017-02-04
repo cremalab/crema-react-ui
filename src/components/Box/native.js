@@ -2,15 +2,17 @@ import React from 'react'
 import Base from './Base'
 import {
   ContainerNative as Container,
-  InnerNative as Inner
-} from './style'
+  ChildNative as Child,
+  TextNative as Text
+} from './Elements'
 
 export default function Native(props) {
   return <Base
     platform='native'
-    deps={{
+    elements={{
       Container,
-      Inner
+      Child,
+      Text
     }}
     {...props}
   />

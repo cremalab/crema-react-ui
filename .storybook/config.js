@@ -14,4 +14,4 @@ function loadStories() {
   req.keys().forEach(req)
 }
 
-configure(loadStories, module);
+configure(loadStories, module)

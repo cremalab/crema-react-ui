@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
+    "@kadira/storybook-addon-knobs": "^1.7.1",
     "babel-loader": "^6.2.5",
     "babel-preset-stage-0": "^6.22.0",
     "case-sensitive-paths-webpack-plugin": "^1.1.4",
@@ -33,7 +34,6 @@
     "webpack": "^2.0.0"
   },
   "dependencies": {
-    "@kadira/storybook-addon-knobs": "^1.7.1",
     "styled-components": "^1.0.0"
   },
   "peerDependencies": {

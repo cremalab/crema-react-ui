@@ -22,8 +22,11 @@ const props = {
   }
 }
 
-const propsWeb    = {...props, platform: 'web'}
+const propsWeb          = {...props, platform: 'web'}
+const propsWebShorthand = {...propsWeb, padding: [2, 4]}
 const propsNative = {...props, platform: 'native'}
+const propsNativeShorthand = {...props, padding: [2, 4]}
+const propsBadBackground = {...props, background: ''}
 
 describe('themeLenses', () => {
 
@@ -36,7 +39,17 @@ describe('themeLenses', () => {
 
     it('returns scale length without scaleUnit when platform is `native`', () => {
       const actual = scaleLens('padding')(propsNative)
-      expect(actual).toBe(20)
+      expect(actual).toBe('20')
+    })
+
+    it('returns shorthand for array', () => {
+      const actual = scaleLens('padding')(propsWebShorthand)
+      expect(actual).toBe('8px 16px')
+    })
+
+    it('returns shorthand for array', () => {
+      const actual = scaleLens('padding')(propsNativeShorthand)
+      expect(actual).toBe('8 16')
     })
 
   })
@@ -45,6 +58,13 @@ describe('themeLenses', () => {
     it('returns color at prop key from theme', () => {
       const actual = colorLens('background')(props)
       expect(actual).toBe('red')
+    })
+  })
+
+  describe('colorLens handles none matching color', () => {
+    it('returns color at prop key from theme', () => {
+      const actual = colorLens('background')(propsBadBackground)
+      expect(actual).toBe('transparent')
     })
   })
 
