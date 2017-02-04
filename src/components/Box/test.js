@@ -15,7 +15,7 @@ describe('Box', () => {
 
     it('renders text inside Inner', () => {
       const actual = shallow(<BoxWeb>Deric</BoxWeb>)
-        .find('Base')
+        .find('Box')
         .shallow()
         .find(InnerWeb)
         .children()
@@ -25,7 +25,7 @@ describe('Box', () => {
 
     it('renders node without Inner', () => {
       const actual = shallow(<BoxWeb><div>deric</div></BoxWeb>)
-        .find('Base')
+        .find('Box')
         .shallow()
         .find(InnerWeb)
         .length
