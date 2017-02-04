@@ -2,6 +2,7 @@ src
 .storybook
 .gitignore
 .babelrc
+coverage
 tsconfig.json
 webpack.config.js
 yarn.lock

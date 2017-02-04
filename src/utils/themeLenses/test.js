@@ -1,4 +1,4 @@
-import { colorLens, scaleLens } from '.'
+import { styleBy, colorLens, scaleLens } from '.'
 
 const props = {
   padding: 5,
@@ -29,6 +29,20 @@ const propsNativeShorthand = {...props, padding: [2, 4]}
 const propsBadBackground = {...props, background: ''}
 
 describe('themeLenses', () => {
+
+  describe('styleBy', () => {
+
+    it('returns css attribute with style applied if property and theme attribute exists', () => {
+      const actual = styleBy(scaleLens, 'padding', 'padding')(propsWebShorthand)
+      expect(actual).toBe('padding: 8px 16px;')
+    })
+
+    it('returns undefined if property and theme attribute exists', () => {
+      const actual = styleBy(scaleLens, 'padding', 'transform')(propsWeb)
+      expect(actual).toBeUndefined()
+    })
+
+  })
 
   describe('spacingLens', () => {
 
@@ -64,7 +78,7 @@ describe('themeLenses', () => {
   describe('colorLens handles none matching color', () => {
     it('returns color at prop key from theme', () => {
       const actual = colorLens('background')(propsBadBackground)
-      expect(actual).toBe('transparent')
+      expect(actual).toBeUndefined()
     })
   })
 

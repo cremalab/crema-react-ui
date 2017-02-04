@@ -4,7 +4,7 @@
   "main": "web.js",
   "license": "MIT",
   "scripts": {
-    "build:dist": "rm -rf ./dist/* && webpack --env=prod --progress --profile --colors",
+    "build:dist": "rm -rf ./dist/* && webpack --env=prod --progress --profile --colors && npm pack",
     "build": "rm -rf ./dist/* && webpack --env=dev --progress --profile --colors",
     "dev": "getstorybook",
     "start": "start-storybook -p 6006",

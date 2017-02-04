@@ -19,7 +19,7 @@ const Base = (props) => {
     ? (
         <Child
           platform={platform}
-          marginTop={i > 0 ? childSpacing : 0}>
+          childSpacing={i > 0 ? childSpacing : 0}>
           { handleText(child) }
         </Child>
       )
@@ -54,11 +54,7 @@ Base.propTypes = {
   childSpacing: PropTypes.number
 }
 Base.defaultProps = {
-  elements: {},
-  padding: 0,
-  marginTop: 0,
-  margin: 0,
-  borderRadius: 0,
+  elements: {}
 }
 
 export default Base
