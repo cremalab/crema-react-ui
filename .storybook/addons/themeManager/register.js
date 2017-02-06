@@ -1,29 +1,15 @@
 import React from 'react'
 import addons from '@kadira/storybook-addons'
 import { defaultTheme, darkTheme } from 'config/theme'
-
-const themes = ['default', 'dark']
-
-//console.log(storybookAPI.getQueryParam('theme'))
-
-const styles = {
-  themePanel: {
-    margin: 10,
-    fontFamily: 'Arial',
-    fontSize: 14,
-    color: '#444',
-    width: '100%',
-    overflow: 'auto',
-  }
-}
+import { ADDON_TITLE, ADDON_CHANGE_EVENT, ADDON_THEME_PARAM, ADDON_THEMES, ADDON_NAME } from './config'
 
 class ThemeManager extends React.Component {
   constructor(...args) {
     super(...args)
     const { api, channel } = args[0]
-    const theme = api.getQueryParam('theme')
+    const theme = api.getQueryParam(ADDON_THEME_PARAM)
     this.state = { theme }
-    channel.emit('themeManager/change', theme)
+    channel.emit(ADDON_CHANGE_EVENT, theme)
     this.onChangeTheme = this.onChangeTheme.bind(this)
   }
 
@@ -35,19 +21,22 @@ class ThemeManager extends React.Component {
     const { api, channel } = this.props
     this.setState({ theme })
     api.setQueryParams({ theme })
-    channel.emit('themeManager/change', theme)
+    channel.emit(ADDON_CHANGE_EVENT, theme)
   }
 
   render() {
     const { theme } = this.state
 
     return (
-      <div style={styles.themePanel}>
+      <div>
         <div>
           <label style={{ display: 'block' }}>Select Theme</label>
           <select value={ theme } onChange={this.onChangeTheme} ref="theme">
-            <option value="default">Default</option>
-            <option value="dark">Dark</option>
+            {
+              Object.keys(ADDON_THEMES).map((key, i) => {
+                return <option value={key} key={i}>{ ADDON_THEMES[key].title }</option>
+              })
+            }
           </select>
         </div>
       </div>
@@ -66,10 +55,10 @@ class ThemeManager extends React.Component {
   }
 }
 
-addons.register('themeManager', (api) => {
+addons.register(ADDON_NAME, (api) => {
   const channel = addons.getChannel()
-  addons.addPanel('themeManager', {
-    title: 'Theme Manager',
+  addons.addPanel(ADDON_NAME, {
+    title: ADDON_TITLE,
     render: () => (
       <ThemeManager channel={channel} api={api}/>
     ),
