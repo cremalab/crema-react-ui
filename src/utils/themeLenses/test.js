@@ -1,4 +1,4 @@
-import { styleBy, colorLens, scaleLens } from '.'
+import { styleByPlatform, colorLens, scaleLens } from '.'
 
 const props = {
   padding: 5,
@@ -33,12 +33,12 @@ describe('themeLenses', () => {
   describe('styleBy', () => {
 
     it('returns css attribute with style applied if property and theme attribute exists', () => {
-      const actual = styleBy(scaleLens, 'padding', 'padding')(propsWebShorthand)
+      const actual = styleByPlatform('web')(scaleLens, 'padding', [2, 4])(propsWebShorthand)
       expect(actual).toBe('padding: 8px 16px;')
     })
 
     it('returns undefined if property and theme attribute exists', () => {
-      const actual = styleBy(scaleLens, 'padding', 'transform')(propsWeb)
+      const actual = styleByPlatform('web')(scaleLens, 'padding', 'transform')(propsWeb)
       expect(actual).toBeUndefined()
     })
 
@@ -47,7 +47,7 @@ describe('themeLenses', () => {
   describe('spacingLens', () => {
 
     it('returns scale length with scaleUnit (px) when platform is `web`', () => {
-      const actual = scaleLens('padding')(propsWeb)
+      const actual =  styleByPlatform('web')(scaleLens, 'padding', 5)(propsWeb)
       expect(actual).toBe('20px')
     })
 

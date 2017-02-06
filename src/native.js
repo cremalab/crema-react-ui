@@ -1,1 +1,1 @@
-export { default as Box } from './components/Box/Native'
+export { BoxNative as Box } from './components/Box'

@@ -1,20 +1,27 @@
-export const styleBy = (lens, style, prop) => props => {
-  const value = lens(prop)(props)
-  return (props[prop] && value) && `${style}: ${value};`
+export const styleBy = (lens, style, prop, opts = {}) => props => {
+  const value = lens(prop, props, opts)
+  return value && `${style}: ${value};`
 }
 
-export const scaleLens = prop => props => {
-  const { platform, theme } = props
-  const unit = platform == 'web' ? theme.scaleUnit : ''
-  const values = [].concat(props[prop])
+export const themeScale = (prop, props, opts) => {
+  const { theme } = props
+  const { negate } = opts
+  const { scale, platform } = theme
+  const unit = platform === 'web' ? scale.unit ? scale.unit : 'px' : ''
+  const values = [].concat(prop ? prop : 0)
+  const negative = negate === true ? '-' : ''
   return values.reduce((acc, x, i) => {
-    return `${acc}${i === 0 ? '' : ' '}${theme.scale[x]}${unit}`
+    return `${acc}${i === 0 ? '' : ' '}${negative}${scale[x]}${unit}`
   },
   ''
   )
 }
 
-export const colorLens = prop => props => {
+export const themeColor = (prop, props, opts) => {
   const { theme } = props
-  return theme.color[props[prop]]
+  return theme.color[prop]
+}
+
+export const display = (prop, props, opts) => {
+  // return prop === 'row' ? 'flex' : 'block'
 }
