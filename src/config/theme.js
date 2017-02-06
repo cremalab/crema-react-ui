@@ -1,11 +1,13 @@
 const defaultTheme = {
-  primaryColor: '#00c',
+  platform: 'web',
   color: {
     primary: 'teal',
+    secondary: 'papayawhip',
+    tertiary: 'orange',
     white: 'white',
   },
-  scaleUnit: 'px',
   scale: {
+    unit: 'px',
     '0': 0,
     '1': 4,
     '2': 8,
@@ -19,13 +21,13 @@ const defaultTheme = {
 }
 
 const darkTheme = {
-  primaryColor: '#c00',
+  platform: 'web',
   color: {
     primary: 'pink',
     white: 'white',
   },
-  scaleUnit: 'px',
   scale: {
+    unit: 'px',
     '0': 0,
     '1': 4,
     '2': 8,
