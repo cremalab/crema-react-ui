@@ -1,15 +1,12 @@
 import React from 'react'
 import addons from '@kadira/storybook-addons'
-import { defaultTheme, darkTheme } from 'config/theme'
 import { ADDON_TITLE, ADDON_CHANGE_EVENT, ADDON_THEME_PARAM, ADDON_THEMES, ADDON_NAME } from './config'
+import { getTheme, setTheme } from './storage'
 
 class ThemeManager extends React.Component {
   constructor(...args) {
     super(...args)
-    const { api, channel } = args[0]
-    const theme = api.getQueryParam(ADDON_THEME_PARAM)
-    this.state = { theme }
-    channel.emit(ADDON_CHANGE_EVENT, theme)
+    this.state = { theme: getTheme() }
     this.onChangeTheme = this.onChangeTheme.bind(this)
   }
 
@@ -20,7 +17,7 @@ class ThemeManager extends React.Component {
   changeTheme(theme) {
     const { api, channel } = this.props
     this.setState({ theme })
-    api.setQueryParams({ theme })
+    setTheme(theme)
     channel.emit(ADDON_CHANGE_EVENT, theme)
   }
 

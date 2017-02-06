@@ -25,6 +25,8 @@ const darkTheme = {
   color: {
     primary: 'pink',
     white: 'white',
+    tertiary: 'blue',
+    secondary: 'green'
   },
   scale: {
     unit: 'px',
