@@ -1,7 +1,7 @@
 import React, { PropTypes, Children } from 'react'
 import styledWeb, { withTheme } from 'styled-components'
 import styledNative from 'styled-components/native'
-import { styleBy, themeScale, themeColor, themeDisplay } from 'utils/themeLenses'
+import { styleBy, themeScale, themeColor } from 'utils/themeLenses'
 
 const defaultProps = {
   theme: {
@@ -56,7 +56,6 @@ function Box(props) {
     backgroundColor,
     borderRadius,
     children,
-    childLayout,
     childSpacing,
     color,
     margin,
