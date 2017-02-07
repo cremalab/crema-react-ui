@@ -4,24 +4,19 @@ export const styleBy = (lens, style, prop, opts = {}) => props => {
 }
 
 export const themeScale = (prop, props, opts) => {
-  const { theme } = props
+  const { theme  } = props
   const { negate } = opts
   const { scale, platform } = theme
   const unit = platform === 'web' ? scale.unit ? scale.unit : 'px' : ''
-  const values = [].concat(prop ? prop : 0)
+  const values = [].concat(prop)
   const negative = negate === true ? '-' : ''
-  return values.reduce((acc, x, i) => {
-    return `${acc}${i === 0 ? '' : ' '}${negative}${scale[x]}${unit}`
-  },
-  ''
-  )
+  const valid = !(values.map(x => scale[x]).indexOf(undefined) > -1)
+  return valid
+    ? values.reduce((acc, x, i) => `${acc}${i === 0 ? '' : ' '}${negative}${scale[x]}${unit}`, '')
+    : undefined
 }
 
-export const themeColor = (prop, props, opts) => {
+export const themeColor = (prop, props) => {
   const { theme } = props
   return theme.color[prop]
-}
-
-export const display = (prop, props, opts) => {
-  // return prop === 'row' ? 'flex' : 'block'
 }

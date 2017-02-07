@@ -1,5 +1,5 @@
 const defaultTheme = {
-  platform: 'web',
+  platform: 'native',
   color: {
     primary: 'teal',
     secondary: 'papayawhip',

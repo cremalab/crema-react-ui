@@ -1,7 +1,7 @@
 import React, { PropTypes, Children } from 'react'
 import styledWeb, { withTheme } from 'styled-components'
 import styledNative from 'styled-components/native'
-import { styleBy, themeScale, themeColor, display } from 'utils/themeLenses'
+import { styleBy, themeScale, themeColor, themeDisplay } from 'utils/themeLenses'
 
 const defaultProps = {
   theme: {
@@ -69,21 +69,24 @@ function Box(props) {
   const Text    = isWeb ? styledWeb['span'] : styledNative['Text']
 
   const Container = View`
-    ${styleBy(themeColor, 'background-color', backgroundColor)}
-    ${styleBy(themeScale, 'margin',           margin)}
-    ${styleBy(themeScale, 'padding',          padding)}
-    ${styleBy(display,    'display',          childLayout)}
-    ${styleBy(themeScale, 'border-radius',    borderRadius)}
+    ${styleBy(themeColor,   'background-color', backgroundColor)}
+    ${styleBy(themeScale,   'margin',           margin)}
+    ${styleBy(themeScale,   'padding',          padding)}
+    ${styleBy(themeScale,   'border-radius',    borderRadius)}
   `
   Container.defaultProps = defaultProps
 
   const ChildSpacingNegate = View`
     ${styleBy(themeScale, 'margin', childSpacing, {negate: true})}
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   `
   ChildSpacingNegate.defaultProps = defaultProps
 
   const Child = View`
     ${styleBy(themeScale, 'margin', childSpacing)}
+    flex: 1;
   `
   Child.defaultProps = defaultProps
 
@@ -102,14 +105,14 @@ function Box(props) {
 
   return (
     <Container>
+      <ChildSpacingNegate>
       { childSpacing
-        ? <ChildSpacingNegate>
-            { Children.map(children, child => handleChild(child))}
-          </ChildSpacingNegate>
+        ? Children.map(children, child => handleChild(child))
         : typeof children === 'string'
         ? handleText(children)
         : children
       }
+      </ChildSpacingNegate>
     </Container>
   )
 
