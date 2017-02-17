@@ -3,16 +3,18 @@ export const styleBy = (lens, style, prop, opts = {}) => props => {
   return value && `${style}: ${value};`
 }
 
-export const themeScale = (prop, props, opts) => {
-  const { theme  } = props
-  const { negate } = opts
-  const { scale, platform } = theme
+export const themeScale = (prop, scale, opts) => {
+  const { negate, platform, half } = opts
   const unit = platform === 'web' ? scale.unit ? scale.unit : 'px' : ''
   const values = [].concat(prop)
   const negative = negate === true ? '-' : ''
   const valid = !(values.map(x => scale[x]).indexOf(undefined) > -1)
   return valid
-    ? values.reduce((acc, x, i) => `${acc}${i === 0 ? '' : ' '}${negative}${scale[x]}${unit}`, '')
+    ? values.reduce((acc, x, i) => {
+      const value = scale[x]
+      const valueProcessed = half ? value / 2 : value
+      return `${acc}${i === 0 ? '' : ' '}${negative}${valueProcessed}${unit}`
+    }, '')
     : undefined
 }
 

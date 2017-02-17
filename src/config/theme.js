@@ -6,7 +6,7 @@ const defaultTheme = {
     tertiary: 'orange',
     white: 'white',
   },
-  scale: {
+  spacing: {
     unit: 'px',
     '0': 0,
     '1': 4,
@@ -17,6 +17,14 @@ const defaultTheme = {
     '6': 24,
     '7': 28,
     '8': 32,
+  },
+  opacity: {
+    0: 0,
+    1: 0.25,
+    2: 0.5,
+    3: 0.75,
+    4: 0.90,
+    5: 1,
   }
 }
 
@@ -28,7 +36,7 @@ const darkTheme = {
     tertiary: 'blue',
     secondary: 'green'
   },
-  scale: {
+  spacing: {
     unit: 'px',
     '0': 0,
     '1': 4,
