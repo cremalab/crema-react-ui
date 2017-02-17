@@ -1,7 +1,7 @@
 {
   "name": "crema-react-ui",
   "version": "1.0.2",
-  "main": "dist/index.js",
+  "main": "web.js",
   "license": "MIT",
   "scripts": {
     "build:dist": "rm -rf ./dist/* && webpack --env=prod --progress --profile --colors && npm pack",
