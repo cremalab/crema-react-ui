@@ -1,6 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import Box from '.'
+import Box from './Web'
+import BoxN from './Native'
 // import { text, number, array } from '@kadira/storybook-addon-knobs'
 
 storiesOf('Box', module)
@@ -28,19 +29,19 @@ storiesOf('Box', module)
       padding={3}
       backgroundColor='primary'
       >
-      <Box
+      <BoxN
         childSpacing={2}
         backgroundColor='secondary'
         >
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      </Box>
+        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
+        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
+        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
+        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
+        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
+        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
+        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
+        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
+      </BoxN>
       <Box
         childSpacing={2}
         childLayout='row'

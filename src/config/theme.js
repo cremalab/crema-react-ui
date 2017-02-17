@@ -1,5 +1,4 @@
 const defaultTheme = {
-  platform: 'web',
   color: {
     primary: 'teal',
     secondary: 'papayawhip',
@@ -29,7 +28,6 @@ const defaultTheme = {
 }
 
 const darkTheme = {
-  platform: 'native',
   color: {
     primary: 'teal',
     secondary: 'papayawhip',
