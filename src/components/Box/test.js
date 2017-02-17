@@ -1,35 +1,33 @@
 import React from 'react'
-import styledNative from 'styled-components/native'
 import { Box } from '.'
 import { shallow, render } from 'enzyme'
 
-describe('Box', () => {
+describe('<Box />', () => {
 
   it('renders', () => {
     const wrapper = shallow(<Box />)
     expect(wrapper.length).toBe(1)
   })
 
-  it('renders web text node', () => {
-    const actual = render(<Box>Deric</Box>)
-      .find('span')
-      .text()
-    expect(actual).toEqual('Deric')
+  describe('theme prop', () => {
+    it(`backgroundColor`)
+    it(`backgroundImage`)
+    it(`borderColor`)
+    it(`borderWidth`)
+    it(`borderRadius`)
+    it(`children`)
+    it(`margin`)
+    it(`opacity`)
+    it(`padding`)
+    it(`theme`)
   })
 
-  it('renders native text node', () => {
-    const actual = shallow(<Box theme={{platform: 'native'}}>Deric</Box>)
-      .find('Styled(Text)')
-      .children()
-      .text()
-    expect(actual).toEqual('Deric')
-  })
-
-  it('renders wrapped child when childSpacing', () => {
-    const actual = shallow(<Box childSpacing={2} theme={{platform: 'native'}}>Deric</Box>)
-      .find('Styled(View)')
-      .length
-    expect(actual).toEqual(3)
+  describe('convenience prop', () => {
+    it(`childSpacing`)
+    it(`childLayout`)
+    it(`childAlign`)
+    it(`childWrap`)
+    it(`childJustify`)
   })
 
 })

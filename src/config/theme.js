@@ -1,12 +1,12 @@
 const defaultTheme = {
-  platform: 'native',
+  platform: 'web',
   color: {
     primary: 'teal',
     secondary: 'papayawhip',
     tertiary: 'orange',
     white: 'white',
   },
-  scale: {
+  spacing: {
     unit: 'px',
     '0': 0,
     '1': 4,
@@ -17,18 +17,26 @@ const defaultTheme = {
     '6': 24,
     '7': 28,
     '8': 32,
+  },
+  opacity: {
+    0: 0,
+    1: 0.25,
+    2: 0.5,
+    3: 0.75,
+    4: 0.90,
+    5: 1,
   }
 }
 
 const darkTheme = {
-  platform: 'web',
+  platform: 'native',
   color: {
-    primary: 'pink',
+    primary: 'teal',
+    secondary: 'papayawhip',
+    tertiary: 'pink',
     white: 'white',
-    tertiary: 'blue',
-    secondary: 'green'
   },
-  scale: {
+  spacing: {
     unit: 'px',
     '0': 0,
     '1': 4,
@@ -39,6 +47,14 @@ const darkTheme = {
     '6': 24,
     '7': 28,
     '8': 32,
+  },
+  opacity: {
+    0: 0,
+    1: 0.25,
+    2: 0.5,
+    3: 0.75,
+    4: 0.90,
+    5: 1,
   }
 }
 

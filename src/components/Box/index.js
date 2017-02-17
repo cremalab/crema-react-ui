@@ -3,7 +3,30 @@ import styledWeb, { withTheme } from 'styled-components'
 import styledNative from 'styled-components/native'
 import { styleBy, themeScale, themeColor } from 'utils/themeLenses'
 
-const defaultProps = {
+const shorthandProps = PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
+
+Box.displayName = 'Box'
+
+Box.propTypes = {
+  backgroundColor: PropTypes.string,
+  backgroundImage: PropTypes.string,
+  borderColor: shorthandProps,
+  borderWidth: shorthandProps,
+  borderRadius: shorthandProps,
+  children: PropTypes.any,
+  childSpacing: PropTypes.number,
+  childLayout: PropTypes.oneOf(['column', 'row']),
+  childAlign: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
+  childWrap: PropTypes.oneOf(['wrap', 'nowrap']),
+  childJustify: PropTypes.oneOf(['start', 'end', 'center', 'space-between', 'space-around']),
+  margin: shorthandProps,
+  opacity: PropTypes.number,
+  padding: shorthandProps,
+  theme: PropTypes.object,
+  min: PropTypes.bool,
+}
+
+Box.defaultProps = {
   theme: {
     platform: 'web',
     color: {
@@ -12,7 +35,7 @@ const defaultProps = {
       tertiary: 'orange',
       white: 'white',
     },
-    scale: {
+    spacing: {
       unit: 'px',
       '0': 0,
       '1': 4,
@@ -23,95 +46,92 @@ const defaultProps = {
       '6': 24,
       '7': 28,
       '8': 32,
+    },
+    opacity: {
+      0: 0,
+      1: 0.25,
+      2: 0.5,
+      3: 0.75,
+      4: 0.90,
+      5: 1,
     }
-  }
-}
-
-const shorthandProps = PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
-
-Box.displayName = 'Box'
-
-Box.propTypes = {
-  backgroundColor: PropTypes.string,
-  borderRadius: shorthandProps,
-  children: PropTypes.any,
-  childSpacing: PropTypes.number,
-  childLayout: PropTypes.oneOf(['column', 'row']),
-  color: PropTypes.string,
-  margin: shorthandProps,
-  padding: shorthandProps,
-  theme: PropTypes.object,
-}
-
-Box.defaultProps = {
-  theme: {
-    platform: 'web'
   },
-  childLayout: 'column'
+  childSpacing: 0,
+  childLayout: 'column',
+  childJustify: 'start',
+  min: false
 }
 
 function Box(props) {
 
   const {
     backgroundColor,
+    backgroundImage,
+    borderColor,
+    borderWidth,
     borderRadius,
     children,
     childSpacing,
-    color,
+    childLayout,
+    childAlign,
+    childWrap,
+    childJustify,
+    height,
     margin,
+    opacity,
     padding,
-    theme: { platform },
+    theme,
+    min,
   } = props
+
+  const { platform } = theme
 
   const isWeb   = platform === 'web'
   const View    = isWeb ? styledWeb['div'] : styledNative['View']
-  const Text    = isWeb ? styledWeb['span'] : styledNative['Text']
 
   const Container = View`
-    ${styleBy(themeColor,   'background-color', backgroundColor)}
-    ${styleBy(themeScale,   'margin',           margin)}
-    ${styleBy(themeScale,   'padding',          padding)}
-    ${styleBy(themeScale,   'border-radius',    borderRadius)}
+    ${isWeb && `
+      display: flex;
+      box-sizing: border-box;
+    `}
+    ${backgroundColor && `background-color: ${theme.color[backgroundColor]}`                          }
+    ${borderColor     && `border-color:     ${theme.color[borderColor]}`                              }
+    ${borderWidth     && `border-width:     ${themeScale(borderWidth, theme.spacing,  { platform })}` }
+    ${margin          && `margin:           ${themeScale(margin, theme.spacing,       { platform })}` }
+    ${padding         && `padding:          ${themeScale(padding, theme.spacing,      { platform })}` }
+    ${borderRadius    && `border-radius:    ${themeScale(borderRadius, theme.spacing, { platform })}` }
+    ${opacity         && `opacity:          ${theme.opacity[opacity]}`                                }
+    flex-grow: 1;
   `
-  Container.defaultProps = defaultProps
+  Container.displayName = 'Container'
 
-  const ChildSpacingNegate = View`
-    ${styleBy(themeScale, 'margin', childSpacing, {negate: true})}
+  const Spacer = View`
+    ${isWeb        && `display: flex;`}
+    ${childSpacing && `margin: ${themeScale(childSpacing, theme.spacing, { platform, negate: true, half: true })};`}
+    flex-direction: ${childLayout};
+    flex-grow: 1;
     flex: 1;
-    display: flex;
-    flex-direction: column;
   `
-  ChildSpacingNegate.defaultProps = defaultProps
+  Spacer.displayName = 'Spacer'
 
   const Child = View`
-    ${styleBy(themeScale, 'margin', childSpacing)}
-    flex: 1;
+    ${isWeb && `display: flex`}
+    flex-grow: ${props => props.min ? 0 : 1}
+    flex-shrink: 0;
+    padding: ${themeScale(childSpacing, theme.spacing, { platform, half: true })}
   `
-  Child.defaultProps = defaultProps
-
-  const TextNode = Text`
-    ${styleBy(themeColor, 'color', color)}
-  `
-  TextNode.defaultProps = defaultProps
+  Child.displayName = 'Child'
 
   const handleChild = (child) => {
-    return <Child>{child}</Child>
-  }
-
-  const handleText = (child) => {
-    return <TextNode>{child}</TextNode>
+    const props = {...child.props}
+    return <Child {...props}>{child}</Child>
   }
 
   return (
     <Container>
-      <ChildSpacingNegate>
-      { childSpacing
-        ? Children.map(children, child => handleChild(child))
-        : typeof children === 'string'
-        ? handleText(children)
-        : children
-      }
-      </ChildSpacingNegate>
+      <Spacer>
+        { Children.map(children, handleChild) }
+      </Spacer>
     </Container>
   )
 

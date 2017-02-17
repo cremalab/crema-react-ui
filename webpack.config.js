@@ -4,13 +4,10 @@ const libraryName = 'crema-react-ui'
 
 module.exports = function (env) {
   return {
-    entry: {
-      web: './src/web',
-      native: './src/native'
-    },
+    entry: './src/components/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: '[name]/index.js',
+      filename: 'index.js',
       library: libraryName,
       libraryTarget: 'umd',
       umdNamedDefine: true
