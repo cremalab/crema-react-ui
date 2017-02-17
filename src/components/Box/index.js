@@ -1,5 +1,4 @@
 import React, { PropTypes, Children } from 'react'
-import { withTheme } from 'styled-components'
 import { themeScale } from 'utils/themeLenses'
 
 const shorthandProps = PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
@@ -29,32 +28,10 @@ function BoxFactory({elements, platform}) {
 
   Box.defaultProps = {
     theme: {
-      color: {
-        primary: 'teal',
-        secondary: 'papayawhip',
-        tertiary: 'orange',
-        white: 'white',
-      },
+      color: {},
       spacing: {
-        unit: 'px',
-        '0': 0,
-        '1': 4,
-        '2': 8,
-        '3': 12,
-        '4': 16,
-        '5': 20,
-        '6': 24,
-        '7': 28,
-        '8': 32,
-      },
-      opacity: {
-        0: 0,
-        1: 0.25,
-        2: 0.5,
-        3: 0.75,
-        4: 0.90,
-        5: 1,
-      }
+        unit: 'px'},
+      opacity: {}
     },
     childSpacing: 0,
     childLayout: 'column',
@@ -134,7 +111,7 @@ function BoxFactory({elements, platform}) {
     )
   }
 
-  return withTheme(Box)
+  return Box
 
 }
 

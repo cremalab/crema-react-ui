@@ -31,7 +31,6 @@ storiesOf('Box', module)
       >
       <BoxN
         childSpacing={2}
-        backgroundColor='secondary'
         >
         <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
         <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
