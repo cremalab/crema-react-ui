@@ -1,5 +1,5 @@
 const defaultTheme = {
-  platform: 'native',
+  platform: 'web',
   color: {
     primary: 'teal',
     secondary: 'papayawhip',
@@ -29,12 +29,12 @@ const defaultTheme = {
 }
 
 const darkTheme = {
-  platform: 'web',
+  platform: 'native',
   color: {
-    primary: 'pink',
+    primary: 'teal',
+    secondary: 'papayawhip',
+    tertiary: 'pink',
     white: 'white',
-    tertiary: 'blue',
-    secondary: 'green'
   },
   spacing: {
     unit: 'px',
@@ -47,6 +47,14 @@ const darkTheme = {
     '6': 24,
     '7': 28,
     '8': 32,
+  },
+  opacity: {
+    0: 0,
+    1: 0.25,
+    2: 0.5,
+    3: 0.75,
+    4: 0.90,
+    5: 1,
   }
 }
 

@@ -3,7 +3,30 @@ import styledWeb, { withTheme } from 'styled-components'
 import styledNative from 'styled-components/native'
 import { styleBy, themeScale, themeColor } from 'utils/themeLenses'
 
-const defaultProps = {
+const shorthandProps = PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
+
+Box.displayName = 'Box'
+
+Box.propTypes = {
+  backgroundColor: PropTypes.string,
+  backgroundImage: PropTypes.string,
+  borderColor: shorthandProps,
+  borderWidth: shorthandProps,
+  borderRadius: shorthandProps,
+  children: PropTypes.any,
+  childSpacing: PropTypes.number,
+  childLayout: PropTypes.oneOf(['column', 'row']),
+  childAlign: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
+  childWrap: PropTypes.oneOf(['wrap', 'nowrap']),
+  childJustify: PropTypes.oneOf(['start', 'end', 'center', 'space-between', 'space-around']),
+  margin: shorthandProps,
+  opacity: PropTypes.number,
+  padding: shorthandProps,
+  theme: PropTypes.object,
+  min: PropTypes.bool,
+}
+
+Box.defaultProps = {
   theme: {
     platform: 'web',
     color: {
@@ -33,39 +56,10 @@ const defaultProps = {
       5: 1,
     }
   },
-}
-
-const shorthandProps = PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
-
-Box.displayName = 'Box'
-
-Box.propTypes = {
-  backgroundColor: PropTypes.string,
-  backgroundImage: PropTypes.string,
-  borderColor: shorthandProps,
-  borderWidth: shorthandProps,
-  borderRadius: shorthandProps,
-  children: PropTypes.any,
-  childSpacing: PropTypes.number,
-  childLayout: PropTypes.oneOf(['column', 'row']),
-  childAlign: PropTypes.oneOf(['start', 'end', 'center', 'stretch']),
-  childWrap: PropTypes.oneOf(['wrap', 'nowrap']),
-  childJustify: PropTypes.oneOf(['start', 'end', 'center', 'space-between', 'space-around']),
-  margin: shorthandProps,
-  opacity: PropTypes.number,
-  padding: shorthandProps,
-  theme: PropTypes.object,
-  max: PropTypes.bool,
-}
-
-Box.defaultProps = {
-  theme: {
-    platform: 'web'
-  },
   childSpacing: 0,
   childLayout: 'column',
-  childJustify: 'stretch',
-  max: false
+  childJustify: 'start',
+  min: false
 }
 
 function Box(props) {
@@ -87,7 +81,7 @@ function Box(props) {
     opacity,
     padding,
     theme,
-    max,
+    min,
   } = props
 
   const { platform } = theme
@@ -96,7 +90,10 @@ function Box(props) {
   const View    = isWeb ? styledWeb['div'] : styledNative['View']
 
   const Container = View`
-    ${isWeb && `display: flex;`}
+    ${isWeb && `
+      display: flex;
+      box-sizing: border-box;
+    `}
     ${backgroundColor && `background-color: ${theme.color[backgroundColor]}`                          }
     ${borderColor     && `border-color:     ${theme.color[borderColor]}`                              }
     ${borderWidth     && `border-width:     ${themeScale(borderWidth, theme.spacing,  { platform })}` }
@@ -104,35 +101,37 @@ function Box(props) {
     ${padding         && `padding:          ${themeScale(padding, theme.spacing,      { platform })}` }
     ${borderRadius    && `border-radius:    ${themeScale(borderRadius, theme.spacing, { platform })}` }
     ${opacity         && `opacity:          ${theme.opacity[opacity]}`                                }
-    ${max             && `flex: 1` }
+    flex-grow: 1;
   `
-  Container.defaultProps = defaultProps
+  Container.displayName = 'Container'
 
-  const ChildSpacingNegate = View`
-    ${isWeb && `display: flex;`}
-    ${childSpacing && `margin: ${themeScale(childSpacing, theme.spacing, { platform, negate: true, half: true })}`}
-    ${childLayout  && `flex-direction: ${childLayout}`}
+  const Spacer = View`
+    ${isWeb        && `display: flex;`}
+    ${childSpacing && `margin: ${themeScale(childSpacing, theme.spacing, { platform, negate: true, half: true })};`}
+    flex-direction: ${childLayout};
+    flex-grow: 1;
     flex: 1;
   `
-  ChildSpacingNegate.defaultProps = defaultProps
+  Spacer.displayName = 'Spacer'
 
   const Child = View`
     ${isWeb && `display: flex`}
-    ${props => props && `flex-grow: 1` }
-    ${childSpacing && `padding: ${themeScale(childSpacing, theme.spacing, { platform, half: true })}`}
+    flex-grow: ${props => props.min ? 0 : 1}
+    flex-shrink: 0;
+    padding: ${themeScale(childSpacing, theme.spacing, { platform, half: true })}
   `
-  Child.defaultProps = defaultProps
+  Child.displayName = 'Child'
 
   const handleChild = (child) => {
     const props = {...child.props}
-    return <Child props={props}>{child}</Child>
+    return <Child {...props}>{child}</Child>
   }
 
   return (
     <Container>
-      <ChildSpacingNegate>
+      <Spacer>
         { Children.map(children, handleChild) }
-      </ChildSpacingNegate>
+      </Spacer>
     </Container>
   )
 

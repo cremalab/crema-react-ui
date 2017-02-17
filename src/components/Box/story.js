@@ -23,18 +23,37 @@ storiesOf('Box', module)
   ))
   .add('childLayout row', () => (
     <Box
-      backgroundColor='secondary'
-      padding={4}
-      // childSpacing={1}
       childLayout='column'
+      childSpacing={3}
+      padding={3}
+      backgroundColor='primary'
       >
-      <Box max borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+      <Box
+        childSpacing={2}
+        backgroundColor='secondary'
+        >
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+      </Box>
+      <Box
+        childSpacing={2}
+        childLayout='row'
+        min
+        >
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+      </Box>
     </Box>
   ))
