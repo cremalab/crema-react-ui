@@ -34,13 +34,14 @@
     "webpack": "^2.0.0"
   },
   "dependencies": {
+    "storyshots": "^3.2.2",
     "styled-components": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^15.0.0"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "setupTestFrameworkScriptFile": "./src/setupTests.js",
     "moduleDirectories": [
       "node_modules",
       "./src"

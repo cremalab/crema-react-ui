@@ -1,0 +1,243 @@
+exports[`Storyshots Box base 1`] = `
+<div
+  className="ddEcwj">
+  <div
+    className="zFQJc">
+    <div
+      className="zWggr"
+      min={true}>
+      <div
+        className="gbROcd">
+        <div
+          className="cXaqqX">
+          <div
+            className="hAQmOZ">
+            Hi Deric
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="dcoENi">
+      <div
+        className="gbROcd">
+        <div
+          className="cXaqqX" />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Box base 2`] = `
+<div
+  className="ddEcwj">
+  <div
+    className="zFQJc">
+    <div
+      className="zWggr"
+      min={true}>
+      <div
+        className="gbROcd">
+        <div
+          className="cXaqqX">
+          <div
+            className="hAQmOZ">
+            Hi Deric
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="dcoENi">
+      <div
+        className="gbROcd">
+        <div
+          className="cXaqqX" />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text bold 1`] = `
+<div>
+  <div
+    className="coyvVr">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text bold 2`] = `
+<div>
+  <div
+    className="coyvVr">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text color primary 1`] = `
+<div>
+  <div
+    className="fHFNyJ">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text color primary 2`] = `
+<div>
+  <div
+    className="fHFNyJ">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text default 1`] = `
+<div>
+  <div
+    className="kKmBQW">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text default 2`] = `
+<div>
+  <div
+    className="kKmBQW">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text family secondary 1`] = `
+<div>
+  <div
+    className="ejsjTe">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text family secondary 2`] = `
+<div>
+  <div
+    className="ejsjTe">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text italic 4 1`] = `
+<div>
+  <div
+    className="efVRwj">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text italic 4 2`] = `
+<div>
+  <div
+    className="efVRwj">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text size 5 1`] = `
+<div>
+  <div
+    className="gdXZrE">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text size 5 2`] = `
+<div>
+  <div
+    className="gdXZrE">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text size 5 bold 1`] = `
+<div>
+  <div
+    className="cUylNI">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Text size 5 bold 2`] = `
+<div>
+  <div
+    className="cUylNI">
+    
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Donec ullamcorper pharetra odio, ut eleifend ante tristique nec.
+    Mauris porttitor neque nec purus tempus, at posuere urna aliquet.
+    
+  </div>
+</div>
+`;

@@ -1,6 +1,6 @@
 const defaultTheme = {
   color: {
-    primary: 'gainsboro',
+    primary: 'red',
     secondary: 'lightgray',
     tertiary: 'silver',
     white: 'white',
@@ -21,6 +21,10 @@ const defaultTheme = {
     8: 24,
     9: 28,
     10: 32,
+  },
+  fontFamilies: {
+    primary: 'sans-serif',
+    secondary: 'serif'
   },
   fontSizes: {
     0: 0,
