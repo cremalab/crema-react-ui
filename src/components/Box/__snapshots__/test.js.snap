@@ -1,0 +1,17 @@
+exports[`<Box /> Web props default 1`] = `
+Object {
+  "childJustify": "start",
+  "childLayout": "column",
+  "childSpacing": 0,
+  "children": "Hi",
+  "min": false,
+  "opacity": 1,
+  "theme": Object {
+    "color": Object {},
+    "opacity": Object {},
+    "spacing": Object {
+      "unit": "px",
+    },
+  },
+}
+`;

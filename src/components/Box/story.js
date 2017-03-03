@@ -1,59 +1,25 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
 import Box from './Web'
-import BoxN from './Native'
-// import { text, number, array } from '@kadira/storybook-addon-knobs'
 
 storiesOf('Box', module)
-  .add('childLayout column', () => (
-    <Box
-      backgroundColor='secondary'
-      padding={4}
-      childSpacing={1}
-      max
-      >
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-      <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-    </Box>
-  ))
-  .add('childLayout row', () => (
-    <Box
-      childLayout='column'
-      childSpacing={3}
-      padding={3}
-      backgroundColor='primary'
-      >
-      <BoxN
-        childSpacing={2}
-        >
-        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
-        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
-        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
-        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
-        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
-        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
-        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
-        <BoxN borderRadius={1} padding={4} backgroundColor='tertiary'>BoxN</BoxN>
-      </BoxN>
+  .add('base', () => {
+    return (
       <Box
-        childSpacing={2}
+        padding={[6, 10]}
+        childSpacing={6}
         childLayout='row'
-        min
-        >
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box min borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
-        <Box borderRadius={1} padding={4} backgroundColor='tertiary'>Box</Box>
+        backgroundColor='primary'
+        backgroundColorShade={2}>
+        <Box
+          min
+          padding={6}
+          borderRadius={6}
+          backgroundColor='white'>Hi Deric</Box>
+        <Box
+          padding={6}
+          borderRadius={6}
+          backgroundColor='white'/>
       </Box>
-    </Box>
-  ))
+    )
+  })

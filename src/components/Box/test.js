@@ -5,12 +5,28 @@ import { shallow } from 'enzyme'
 
 describe('<Box /> Web', () => {
 
-  it('renders', () => {
-    const wrapper = shallow(<BoxWeb />)
-    expect(wrapper.length).toBe(1)
+
+  describe('render', () => {
+    it('without children', () => {
+      const wrapper = shallow(<BoxWeb />)
+      expect(wrapper.length).toBe(1)
+    })
+    it('with children', () => {
+      const wrapper = shallow(<BoxWeb>Hi</BoxWeb>)
+      expect(wrapper.find('Child').shallow().text())
+        .toBe('Hi')
+    })
   })
 
-  describe('theme prop', () => {
+  describe('props', () => {
+    it(`default`, () => {
+      const wrapper = shallow(
+        <BoxWeb>
+          Hi
+        </BoxWeb>
+      )
+      expect(wrapper.unrendered.props).toMatchSnapshot()
+    })
     it(`backgroundColor`)
     it(`backgroundImage`)
     it(`borderColor`)
@@ -21,9 +37,6 @@ describe('<Box /> Web', () => {
     it(`opacity`)
     it(`padding`)
     it(`theme`)
-  })
-
-  describe('convenience prop', () => {
     it(`childSpacing`)
     it(`childLayout`)
     it(`childAlign`)
@@ -35,9 +48,16 @@ describe('<Box /> Web', () => {
 
 describe('<Box /> Native', () => {
 
-  it('renders', () => {
-    const wrapper = shallow(<BoxNat />)
-    expect(wrapper.length).toBe(1)
+  describe('render', () => {
+    it('without children', () => {
+      const wrapper = shallow(<BoxNat />)
+      expect(wrapper.length).toBe(1)
+    })
+    // it('with children', () => {
+    //   const wrapper = render(<BoxNat><BoxNat/></BoxNat>)
+    //   expect(wrapper.length)
+    //     .toBe(1)
+    // })
   })
 
   describe('theme prop', () => {

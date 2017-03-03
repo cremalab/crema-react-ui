@@ -1,7 +1,10 @@
 import React, { PropTypes, Children } from 'react'
-import { themeScale } from 'utils/themeLenses'
+import { themeScale, alignments } from 'utils/style'
 
-const shorthandProps = PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)])
+const shorthandProps = PropTypes.oneOfType([
+  PropTypes.number,
+  PropTypes.arrayOf(PropTypes.number)
+])
 
 function BoxFactory({elements, platform}) {
 
@@ -10,8 +13,9 @@ function BoxFactory({elements, platform}) {
   Box.propTypes = {
     backgroundColor: PropTypes.string,
     backgroundImage: PropTypes.string,
-    borderColor: shorthandProps,
+    borderColor: PropTypes.string,
     borderWidth: shorthandProps,
+    borderStyle: PropTypes.oneOf(['solid', 'dashed', 'dotted']),
     borderRadius: shorthandProps,
     children: PropTypes.any,
     childSpacing: PropTypes.number,
@@ -30,9 +34,11 @@ function BoxFactory({elements, platform}) {
     theme: {
       color: {},
       spacing: {
-        unit: 'px'},
+        unit: 'px'
+      },
       opacity: {}
     },
+    opacity: 1,
     childSpacing: 0,
     childLayout: 'column',
     childJustify: 'start',
@@ -46,6 +52,7 @@ function BoxFactory({elements, platform}) {
       backgroundImage,
       borderColor,
       borderWidth,
+      borderStyle,
       borderRadius,
       children,
       childSpacing,
@@ -58,30 +65,32 @@ function BoxFactory({elements, platform}) {
       opacity,
       padding,
       theme,
-      min,
     } = props
 
     const isWeb   = platform === 'web'
     const View    = isWeb ? elements['div'] : elements['View']
 
     const Container = View`
-      ${isWeb && `
+      ${isWeb ? `
         display: flex;
         box-sizing: border-box;
-      `}
-      ${backgroundColor && `background-color: ${theme.color[backgroundColor]}`                          }
-      ${borderColor     && `border-color:     ${theme.color[borderColor]}`                              }
-      ${borderWidth     && `border-width:     ${themeScale(borderWidth, theme.spacing,  { platform })}` }
-      ${margin          && `margin:           ${themeScale(margin, theme.spacing,       { platform })}` }
-      ${padding         && `padding:          ${themeScale(padding, theme.spacing,      { platform })}` }
-      ${borderRadius    && `border-radius:    ${themeScale(borderRadius, theme.spacing, { platform })}` }
-      ${opacity         && `opacity:          ${theme.opacity[opacity]}`                                }
+      ` : null }
+      ${ childJustify    ? `justify-content:  ${alignments[childJustify]}`                              : null }
+      ${ backgroundColor ? `background-color: ${theme.color[backgroundColor]}`                          : null }
+      ${ borderWidth     ? `border-width:     ${themeScale(borderWidth, theme.spacing,  { platform })}` : null }
+      ${ borderColor && borderWidth ? `border-color:     ${theme.color[borderColor]}`                   : null }
+      ${ borderStyle && borderWidth ? `border-style:     ${borderStyle}`                                : null }
+      ${ margin          ? `margin:           ${themeScale(margin, theme.spacing, { platform })}`       : null }
+      ${ padding         ? `padding:          ${themeScale(padding, theme.spacing,      { platform })}` : null }
+      ${ borderRadius    ? `border-radius:    ${themeScale(borderRadius, theme.spacing, { platform })}` : null }
+      ${ opacity         ? `opacity:          ${theme.opacity[opacity]}`                                : null }
       flex-grow: 1;
     `
     Container.displayName = 'Container'
 
     const Spacer = View`
-      ${isWeb        && `display: flex;`}
+      ${ isWeb ? `display: flex;` : null }
+      ${ childAlign      ? `align-items:      ${alignments[childAlign]}` : null }
       margin: ${themeScale(childSpacing, theme.spacing, { platform, negate: true, half: true })};
       flex-direction: ${childLayout};
       flex-grow: 1;
@@ -90,9 +99,8 @@ function BoxFactory({elements, platform}) {
     Spacer.displayName = 'Spacer'
 
     const Child = View`
-      ${isWeb && `display: flex`}
+      ${ isWeb ? `display: flex` : null }
       flex-grow: ${props => props.min ? 0 : 1}
-      flex-shrink: 0;
       padding: ${themeScale(childSpacing, theme.spacing, { platform, half: true })}
     `
     Child.displayName = 'Child'
