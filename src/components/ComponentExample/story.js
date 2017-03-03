@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
-import Web from './Web'
-import Native from './Native'
+import { Component as Web } from './Web'
+import { Component as Native } from './Native'
 
 storiesOf(Web.displayName, module)
   .add('Web', () => {
