@@ -3,6 +3,7 @@ const defaultTheme = {
     primary: 'gainsboro',
     secondary: 'lightgray',
     tertiary: 'silver',
+    highlight: 'orange',
     white: 'white',
     black: 'darkslategray'
   },
@@ -22,13 +23,16 @@ const defaultTheme = {
     9: 28,
     10: 32,
   },
-  fontSizes: {
+  fontSize: {
+    unit: 'px',
     0: 0,
     1: 8,
     2: 10,
     3: 12,
     4: 14,
     5: 16,
+    6: 20,
+    7: 24,
   },
   opacity: {
     1: 1.0,
@@ -36,36 +40,66 @@ const defaultTheme = {
     3: 0.5,
     4: 0.25,
     5: 0.0,
-  }
+  },
+  InputTextColor: 'primary',
+  InputTextColorFocused: 'highlight',
+  InputTextBackgroundColor: 'white',
+  InputTextBackgroundColorFocused: 'white',
+  InputTextBorderRadius: 3,
+  InputTextBorderColor: 'primary',
+  InputTextBorderColorFocused: 'highlight',
+  InputTextBorderWidth: 2,
+  InputTextPadding: [4, 6],
 }
 
 const darkTheme = {
   color: {
-    primary: 'teal',
-    secondary: 'papayawhip',
-    tertiary: 'pink',
+    primary: 'gainsboro',
+    secondary: 'lightgray',
+    tertiary: 'silver',
+    highlight: 'purple',
     white: 'white',
+    black: 'darkslategray'
   },
   spacing: {
     unit: 'px',
     '0': 0,
-    '1': 4,
-    '2': 8,
-    '3': 12,
+    '1': 1,
+    '2': 2,
+    '3': 3,
     '4': 16,
     '5': 20,
     '6': 24,
     '7': 28,
     '8': 32,
   },
-  opacity: {
+  fontSize: {
+    unit: 'px',
     0: 0,
-    1: 0.25,
-    2: 0.5,
-    3: 0.75,
-    4: 0.90,
-    5: 1,
-  }
+    1: 8,
+    2: 10,
+    3: 12,
+    4: 14,
+    5: 16,
+    6: 20,
+    7: 24,
+  },
+  opacity: {
+    1: 1.0,
+    2: 0.75,
+    3: 0.5,
+    4: 0.25,
+    5: 0.0,
+  },
+  InputTextColor: 'primary',
+  InputTextColorFocused: 'highlight',
+  InputTextBackgroundColor: 'white',
+  InputTextBackgroundColorFocused: 'white',
+  InputTextBorderRadius: 2,
+  InputTextBorderColor: 'primary',
+  InputTextBorderColorFocused: 'highlight',
+  InputTextBorderWidth: 2,
+  InputTextPadding: [4, 5],
 }
 
 export { defaultTheme, darkTheme }

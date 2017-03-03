@@ -1,4 +1,4 @@
-import React, { PropTypes, Children } from 'react'
+import React, { PureComponent, PropTypes, Children } from 'react'
 import { themeScale, alignments } from 'utils/style'
 
 const shorthandProps = PropTypes.oneOfType([
@@ -8,9 +8,87 @@ const shorthandProps = PropTypes.oneOfType([
 
 function BoxFactory({elements, platform}) {
 
-  Box.displayName = 'Box'
+  class Component extends PureComponent {
+    render() {
 
-  Box.propTypes = {
+      const {
+        backgroundColor,
+        backgroundImage,
+        borderColor,
+        borderWidth,
+        borderStyle,
+        borderRadius,
+        children,
+        childSpacing,
+        childLayout,
+        childAlign,
+        childWrap,
+        childJustify,
+        height,
+        margin,
+        opacity,
+        padding,
+        theme,
+        ...rest,
+      } = this.props
+
+      const isWeb   = platform === 'web'
+      const View    = isWeb ? elements['div'] : elements['View']
+
+      const Container = View`
+        ${isWeb ? `
+          display: flex;
+          box-sizing: border-box;
+        ` : null }
+        ${ childJustify    ? `justify-content:  ${alignments[childJustify]}`                              : null }
+        ${ backgroundColor ? `background-color: ${theme.color[backgroundColor]}`                          : null }
+        ${ borderWidth     ? `border-width:     ${themeScale(borderWidth, theme.spacing,  { platform })}` : null }
+        ${ borderColor && borderWidth ? `border-color:     ${theme.color[borderColor]}`                   : null }
+        ${ borderStyle && borderWidth ? `border-style:     ${borderStyle}`                                : null }
+        ${ margin          ? `margin:           ${themeScale(margin, theme.spacing, { platform })}`       : null }
+        ${ padding         ? `padding:          ${themeScale(padding, theme.spacing,      { platform })}` : null }
+        ${ borderRadius    ? `border-radius:    ${themeScale(borderRadius, theme.spacing, { platform })}` : null }
+        ${ opacity         ? `opacity:          ${theme.opacity[opacity]}`                                : null }
+        flex-grow: 1;
+      `
+      Container.displayName = 'Container'
+
+      const Spacer = View`
+        ${ isWeb ? `display: flex;` : null }
+        ${ childAlign      ? `align-items:      ${alignments[childAlign]}` : null }
+        margin: ${themeScale(childSpacing, theme.spacing, { platform, negate: true, half: true })};
+        flex-direction: ${childLayout};
+        flex-grow: 1;
+        flex: 1;
+      `
+      Spacer.displayName = 'Spacer'
+
+      const Child = View`
+        ${ isWeb ? `display: flex` : null }
+        flex-grow: ${props => props.min ? 0 : 1}
+        padding: ${themeScale(childSpacing, theme.spacing, { platform, half: true })}
+      `
+      Child.displayName = 'Child'
+
+      const handleChild = (child) => {
+        const props = {...child.props}
+        return <Child min={props.min}>{child}</Child>
+      }
+
+      return (
+        <Container>
+          <Spacer>
+            { Children.map(children, handleChild) }
+          </Spacer>
+        </Container>
+      )
+    }
+
+  }
+
+  Component.displayName = 'Box'
+
+  Component.propTypes = {
     backgroundColor: PropTypes.string,
     backgroundImage: PropTypes.string,
     borderColor: PropTypes.string,
@@ -30,7 +108,7 @@ function BoxFactory({elements, platform}) {
     min: PropTypes.bool,
   }
 
-  Box.defaultProps = {
+  Component.defaultProps = {
     theme: {
       color: {},
       spacing: {
@@ -45,81 +123,7 @@ function BoxFactory({elements, platform}) {
     min: false
   }
 
-  function Box(props) {
-
-    const {
-      backgroundColor,
-      backgroundImage,
-      borderColor,
-      borderWidth,
-      borderStyle,
-      borderRadius,
-      children,
-      childSpacing,
-      childLayout,
-      childAlign,
-      childWrap,
-      childJustify,
-      height,
-      margin,
-      opacity,
-      padding,
-      theme,
-    } = props
-
-    const isWeb   = platform === 'web'
-    const View    = isWeb ? elements['div'] : elements['View']
-
-    const Container = View`
-      ${isWeb ? `
-        display: flex;
-        box-sizing: border-box;
-      ` : null }
-      ${ childJustify    ? `justify-content:  ${alignments[childJustify]}`                              : null }
-      ${ backgroundColor ? `background-color: ${theme.color[backgroundColor]}`                          : null }
-      ${ borderWidth     ? `border-width:     ${themeScale(borderWidth, theme.spacing,  { platform })}` : null }
-      ${ borderColor && borderWidth ? `border-color:     ${theme.color[borderColor]}`                   : null }
-      ${ borderStyle && borderWidth ? `border-style:     ${borderStyle}`                                : null }
-      ${ margin          ? `margin:           ${themeScale(margin, theme.spacing, { platform })}`       : null }
-      ${ padding         ? `padding:          ${themeScale(padding, theme.spacing,      { platform })}` : null }
-      ${ borderRadius    ? `border-radius:    ${themeScale(borderRadius, theme.spacing, { platform })}` : null }
-      ${ opacity         ? `opacity:          ${theme.opacity[opacity]}`                                : null }
-      flex-grow: 1;
-    `
-    Container.displayName = 'Container'
-
-    const Spacer = View`
-      ${ isWeb ? `display: flex;` : null }
-      ${ childAlign      ? `align-items:      ${alignments[childAlign]}` : null }
-      margin: ${themeScale(childSpacing, theme.spacing, { platform, negate: true, half: true })};
-      flex-direction: ${childLayout};
-      flex-grow: 1;
-      flex: 1;
-    `
-    Spacer.displayName = 'Spacer'
-
-    const Child = View`
-      ${ isWeb ? `display: flex` : null }
-      flex-grow: ${props => props.min ? 0 : 1}
-      padding: ${themeScale(childSpacing, theme.spacing, { platform, half: true })}
-    `
-    Child.displayName = 'Child'
-
-    const handleChild = (child) => {
-      const props = {...child.props}
-      return <Child {...props}>{child}</Child>
-    }
-
-    return (
-      <Container>
-        <Spacer>
-          { Children.map(children, handleChild) }
-        </Spacer>
-      </Container>
-    )
-  }
-
-  return Box
+  return Component
 
 }
 

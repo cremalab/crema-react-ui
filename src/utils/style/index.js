@@ -1,9 +1,9 @@
 export const themeScale = (prop, scale, opts) => {
   const { negate, platform, half } = opts
-  const unit = platform === 'web' ? scale.unit ? scale.unit : 'px' : ''
+  const unit = scale && platform === 'web' ? scale.unit ? scale.unit : 'px' : ''
   const values = [].concat(prop)
   const negative = negate === true ? '-' : ''
-  const valid = !(values.map(x => scale[x]).indexOf(undefined) > -1)
+  const valid = scale && !(values.map(x => scale[x]).indexOf(undefined) > -1)
   return valid
     ? values.reduce((acc, x, i) => {
       const value = scale[x]
